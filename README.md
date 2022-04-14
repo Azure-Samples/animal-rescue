@@ -554,27 +554,14 @@ az mysql db create \
 
 ### Connect Application to MySQL
 
-Using the Azure CLI, connect the application to MySQL with a Service Connector:
-
-```shell
-az spring-cloud connection create mysql \
-    -g $RESOURCE_GROUP \
-    --service $SPRING_CLOUD_SERVICE \
-    --app $BACKEND_APP \
-    --deployment default \
-    --tg $RESOURCE_GROUP \
-    --server $MYSQL_SERVER_NAME \
-    --database animals \
-    --client-type springboot \
-    --secret name=$MYSQL_ADMIN_USER secret=$MYSQL_ADMIN_PASSWORD 
-```
-
-Update the backend application with flyway enabled to manage the schema in the new database:
+Update the backend application with the mysql profile activated and provide necessary environment variables
+for the profile:
 
 ```shell
 az spring-cloud app update \
     --name $BACKEND_APP \
-    --env "SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWKSETURI=$JWK_SET_URI" "SPRING_FLYWAY_ENABLED=true"
+    --env "SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWKSETURI=$JWK_SET_URI" "SPRING_PROFILES_ACTIVE=mysql" \
+    "MYSQL_SERVER=$MYSQL_SERVER_NAME" "MYSQL_USER=$MYSQL_ADMIN_USER" "MYSQL_PASSWORD=$MYSQL_ADMIN_PASSWORD"
 ```
 
 Retrieve the URL for Spring Cloud Gateway and open it in a browser:
