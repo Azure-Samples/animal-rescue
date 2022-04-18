@@ -34,6 +34,8 @@ You will:
 - Open the application
 - Explore the application API with Api Portal
 - Configure Single Sign On (SSO) for the application
+- Bind Applications to Azure Database for MySQL
+- Manage application secrets using Azure KeyVault
 
 ## What you will need
 
