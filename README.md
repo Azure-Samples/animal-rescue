@@ -87,7 +87,7 @@ To run the code in this article in Azure Cloud Shell:
 
 ## Install the Azure CLI extension
 
-Install the Azure Spring extension for the Azure CLI using the following command
+Install the Azure Spring Apps extension for the Azure CLI using the following command
 
 ```shell
 az extension add --name spring
